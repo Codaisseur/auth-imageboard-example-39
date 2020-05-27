@@ -33,4 +33,8 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+// 1. Check if there is an authorization header with a token.
+// 2. Decode the token, to get the userId back.
+// 3. add the user to the request object
+
 module.exports = router;

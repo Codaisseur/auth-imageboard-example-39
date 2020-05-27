@@ -2,11 +2,12 @@ const { Router } = require("express");
 const bcrypt = require("bcrypt");
 
 const User = require("../models").user;
-
+const authMiddleware = require("../auth/middleware");
 const router = new Router();
 
-router.get("/", async (req, res, next) => {
+router.get("/", authMiddleware, async (req, res, next) => {
   try {
+    console.log("Whos making this request?", req.user.id);
     const users = await User.findAll();
     res.send(users);
   } catch (e) {
